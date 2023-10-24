@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,5 +29,15 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('/api/book', [BookController::class, 'index']);
+Route::get('/api/book/{id}', [BookController::class, 'show']);
+Route::post('/api/book', [BookController::class, 'store']);
+Route::put('/api/book/{id}', [BookController::class, 'update']);
+Route::delete('/book/{id}', [BookController::class, 'destroy']);
+Route::get('/api/users', [UserController::class, 'index']);
+Route::get('/book/new', [BookController::class, 'newView']);
+Route::get('/book/edit/{id}', [BookController::class, 'editView']);
+Route::get('/book/list', [BookController::class, 'listView']);
 
 require __DIR__.'/auth.php';
